@@ -1,52 +1,68 @@
 {
-  "name": "wovosoft/settings-manager",
-  "description": "Managing Settings for Laravel Application",
-  "license": "MIT",
-  "keywords": [
-    "settings",
-    " manager",
-    " laravel",
-    " wovosoft",
-    " options manager"
-  ],
-  "type": "library",
-  "authors": [
-    {
-      "name": "Narayan Adhikary",
-      "email": "narayanadhikary24@gmail.com"
+    "name": "wovosoft/settings-manager",
+    "description": "Settings Management for Laravel Application",
+    "license": "MIT",
+    "keywords": [
+        "settings",
+        "manager",
+        "laravel",
+        "wovosoft",
+        "options manager"
+    ],
+    "type": "library",
+    "authors": [
+        {
+            "name": "Narayan Adhikary",
+            "email": "narayanadhikary24@gmail.com",
+            "homepage": "https://narayanadhikary.com"
+        },
+        {
+            "name": "WovoSoft.com",
+            "email": "wovosoft@gmail.com",
+            "homepage": "https://wovosoft.com"
+        }
+    ],
+    "repositories": [
+        {
+            "package": {
+                "homepage": "https://github.com/wovosoft/settings-manager"
+            },
+            "type": "vcs",
+            "url": "https://github.com/wovosoft/settings-manager"
+        }
+    ],
+    "homepage": "https://github.com/wovosoft/settings-manager",
+    "require": {
+        "php": ">=7.2",
+        "illuminate/support": "^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wovosoft\\SettingsManager\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wovosoft\\SettingsManager\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "phpunit": "phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wovosoft\\SettingsManager\\ServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
-  ],
-  "require": {
-    "php": ">=7.2",
-    "illuminate/support": "^7.0"
-  },
-  "require-dev": {
-    "orchestra/testbench": "^4.0",
-    "phpunit/phpunit": "^8.5"
-  },
-  "autoload": {
-    "psr-4": {
-      "Wovosoft\\SettingsManager\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Wovosoft\\SettingsManager\\Tests\\": "tests"
-    }
-  },
-  "scripts": {
-    "phpunit": "phpunit"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Wovosoft\\SettingsManager\\ServiceProvider"
-      ]
-    }
-  },
-  "config": {
-    "preferred-install": "dist",
-    "sort-packages": true,
-    "optimize-autoloader": true
-  }
 }
