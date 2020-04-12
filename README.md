@@ -19,25 +19,25 @@ composer require wovosoft/settings-manager
 
 ### Publish Configuration File
 
-1. Publish the configuration file.
+Publish the configuration file.
 
 ```bash
 php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="config"
 ```
 
-2. Publish the Vue Components. The Published components will be copied to `resources/settings-manager/settings` folder. You need to add the `Main.vue` component to your `app.js`
+Publish the Vue Components. The Published components will be copied to `resources/settings-manager/settings` folder. You need to add the `Main.vue` component to your `app.js`
 
 ```bash
 php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="resources"
 ```
 
-3. Publish the Migrations
+Publish the Migrations
 
 ```bash
 php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="migrations"
 ```
 
-3. Publish the Seeds
+Publish the Seeds
 
 ```bash
 php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="seeds"
