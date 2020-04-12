@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Narayan Adhikary (Founder of WovoSoft)
+ * @license MIT
+ * @date 12/04/2020
+ */
 
 namespace Wovosoft\SettingsManager;
 
