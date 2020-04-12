@@ -55,7 +55,7 @@ class SettingsManager implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function set($key, $value, string $group = null, $type = 'b-form-input', $options = [], bool $getModel = false, $model = null)
+    public function set($key, $value, string $group = null, $type = 'text', $options = [], bool $getModel = false, $model = null)
     {
         if ($model) {
             if (is_numeric($model)) {
