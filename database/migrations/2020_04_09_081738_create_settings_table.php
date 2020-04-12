@@ -13,7 +13,7 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config("settings-manager.table_name"), function (Blueprint $table) {
+        Schema::create(config('settings-manager.table_name'), function (Blueprint $table) {
             $table->id();
             $table->string('key');
             $table->string('type')->nullable();
@@ -32,6 +32,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config("settings-manager.table_name"));
+        Schema::dropIfExists(config('settings-manager.table_name'));
     }
 }
