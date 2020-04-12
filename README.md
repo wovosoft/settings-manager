@@ -19,14 +19,37 @@ composer require wovosoft/settings-manager
 
 ### Publish Configuration File
 
+1. Publish the configuration file.
+
 ```bash
 php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="config"
 ```
 
+2. Publish the Vue Components. The Published components will be copied to `resources/settings-manager/settings` folder. You need to add the `Main.vue` component to your `app.js`
+
+```bash
+php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="resources"
+```
+
+3. Publish the Migrations
+
+```bash
+php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="migrations"
+```
+
+3. Publish the Seeds
+
+```bash
+php artisan vendor:publish --provider="Wovosoft\SettingsManager\ServiceProvider" --tag="seeds"
+```
+
+
 ## Usage
-By Default all the Backend and Front-End integration is done out of the box. But if you still want to modifiy
+
+By Default all the Backend and Front-End integration is done out of the box. But if you still want to modify
 the process, then please include the  Facade `Wovosoft\SettingsManager\Facades\Settings` in your
 controller or view, and use it like the instructions explained in the interface below.
+
 ```php
  interface SettingsInterface
  {
@@ -101,10 +124,51 @@ controller or view, and use it like the instructions explained in the interface 
 
 ```
 
+## Example
+
+```php
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Wovosoft\SettingsManager\Facades\Settings;
+
+class SettingsController extends Controller
+{
+    public function set(Request $request)
+    {
+        try {
+            $status = Settings::set(
+                $request->post("key"),
+                $request->post("value"),
+                $request->post("group"),
+                $request->post("type"),
+                $request->post("options"),
+                $request->post("getModel") ?? false,
+                $request->post("id") ?? null
+            );
+            return response()->json([
+                "status" => $status,
+                "msg" => $status ? "Successfully Done" : "Failed to perform the operation",
+                "type" => $status ? "success" : "warning",
+                "title" => $status ? "Success" : "Failed"
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                "status" => false,
+                "msg" => $exception->getMessage(),
+                "title" => "Failed",
+                "type" => "danger",
+                "file" => $exception->getFile(),
+                "line" => $exception->getLine()
+            ], $exception->getCode());
+        }
+    }
+}
+```
+
 ## Security
 
 If you discover any security related issues, please email narayanadhikary24@gmail.com
-instead of using the issue tracker.
+or Create issues in the Github Repository.
 
 ## Credits
 

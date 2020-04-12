@@ -34,5 +34,17 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 //            return new SettingsManager();
 //        });
         $this->app->bind('Settings', SettingsManager::class);
+
+        $this->publishes([
+            __DIR__ . "/../resources" => resource_path('wovosoft/settings-manager'),
+        ], 'resources');
+
+        $this->publishes([
+            __DIR__ . "/../database/migrations" => database_path('migrations'),
+        ], 'migrations');
+
+        $this->publishes([
+            __DIR__ . "/Seeds" => database_path('migrations/seeds'),
+        ], 'seeds');
     }
 }
