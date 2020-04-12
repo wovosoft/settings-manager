@@ -32,7 +32,7 @@ interface SettingsInterface
      *                  model do not find it, just perform the operation
      * @return mixed
      */
-    public function set($key, $value, string $group = null, $type = "text", $options = [], bool $getModel = false, $model = null);
+    public function set($key, $value, string $group = null, $type = 'text', $options = [], bool $getModel = false, $model = null);
 
     /**
      * @param array $item ['key'=>string | number,'value'=> mixed, 'group'=>string, type'=>string, 'options'=>string | array]

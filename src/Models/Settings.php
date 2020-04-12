@@ -8,15 +8,15 @@ use Wovosoft\SettingsManager\Traits\SettingsModelTrait;
 class Settings extends Model
 {
     use SettingsModelTrait;
-    protected $fillable = ["id", "key", "value", "options", "created_at", "updated_at"];
+    protected $fillable = ['id', 'key', 'value', 'options', 'created_at', 'updated_at'];
     protected $casts = [
-        "options" => "array"
+        'options' => 'array',
     ];
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = config("settings-manager.table_name");
+        $this->table = config('settings-manager.table_name');
     }
 
     public function getOptionsAttribute($value)
@@ -35,8 +35,10 @@ class Settings extends Model
 
     public function getValueAttribute($value)
     {
-        if (is_null($value)) return null;
+        if (is_null($value)) {
+            return;
+        }
+
         return $this->isJson($value) ? json_decode($value) : $value;
     }
-
 }
