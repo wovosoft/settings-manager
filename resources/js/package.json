@@ -1,0 +1,9 @@
+{
+    "name": "settings-manager",
+    "version": "1.0.0",
+    "description": "Front-End for WovoSoft's Laravel Settings Manager",
+    "main": "src/index.js",
+    "repository": "https://github.com/wovosoft/settings-manager-frontend",
+    "author": "Narayan Adhikary",
+    "license": "MIT"
+}
