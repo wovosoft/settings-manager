@@ -2,9 +2,9 @@
 
 namespace Wovosoft\SettingsManager\Tests;
 
+use Orchestra\Testbench\TestCase;
 use Wovosoft\SettingsManager\Facades\SettingsManager;
 use Wovosoft\SettingsManager\ServiceProvider;
-use Orchestra\Testbench\TestCase;
 
 class SettingsManagerTest extends TestCase
 {

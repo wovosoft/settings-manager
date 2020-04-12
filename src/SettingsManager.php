@@ -10,13 +10,13 @@ class SettingsManager implements SettingsInterface
 
     public function __construct()
     {
-        $this->cache_key = config("settings-manager.cache-key");
+        $this->cache_key = config('settings-manager.cache-key');
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    public function get($key, string $group = NULL, bool $getModel = false)
+    public function get($key, string $group = null, bool $getModel = false)
     {
         if (is_numeric($key)) {
             /**
@@ -25,35 +25,37 @@ class SettingsManager implements SettingsInterface
             $item = Settings::find($key);
         } elseif (is_array($key)) {
             /**
-             * We check it here because the $key is array, and we don't want to pass the execution to the next condition
+             * We check it here because the $key is array, and we don't want to pass the execution to the next condition.
              */
-            if (!count($key)) {
-                return null;
+            if (! count($key)) {
+                return;
             }
             $items = Settings::query()->whereIn('key', $key);
 
-            if ($group) $items->where('group', $group);
+            if ($group) {
+                $items->where('group', $group);
+            }
 
             return $items->get()->map(function ($item) use ($getModel) {
                 return [$item->key => $getModel ? $item : $item->value];
             })->collapse();
         } else {
             $item = Settings::where('key', $key);
-            if ($group) $item->where('group', $group);
+            if ($group) {
+                $item->where('group', $group);
+            }
             $item = $item->first();
         }
         /**
-         * For the first and last conditions
+         * For the first and last conditions.
          */
         if ($item) {
             return $getModel ? $item : $item->value;
         }
-
-        return null;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function set($key, $value, string $group = null, $type = 'text', $options = [], bool $getModel = false, $model = null)
     {
@@ -71,7 +73,7 @@ class SettingsManager implements SettingsInterface
                 ->where('group', $group)
                 ->first();
         }
-        if (!$item) {
+        if (! $item) {
             $item = new Settings();
         }
         $item->key = $key;
@@ -82,17 +84,19 @@ class SettingsManager implements SettingsInterface
         if ($item->saveOrFail()) {
             return $getModel ? $item : true;
         }
+
         return false;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setArray($item = [], bool $getModel = false)
     {
-        if (!isset($item["key"])) {
+        if (! isset($item['key'])) {
             return false;
         }
+
         return $this->set(
             $item['key'],
             isset($item['value']) ? $item['value'] : null,
@@ -104,21 +108,22 @@ class SettingsManager implements SettingsInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setBatch($key_values = [], bool $getModel = false)
     {
         $status = [];
         foreach ($key_values as $key_value) {
-            if (!($status[$key_value['key']] = $this->setArray($key_value, $getModel))) {
+            if (! ($status[$key_value['key']] = $this->setArray($key_value, $getModel))) {
                 $status[$key_value['key']] = false;
             }
         }
+
         return $status;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function has($key, string $group = null, bool $getModel = false)
     {
@@ -127,16 +132,18 @@ class SettingsManager implements SettingsInterface
         } elseif ($item = Settings::where('key', $key)->group('group', $group)->first()) {
             return $getModel ? $item : true;
         }
+
         return false;
     }
 
-
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function delete($key, string $group = null, bool $getModel = false)
     {
-        if (!$key) return false;
+        if (! $key) {
+            return false;
+        }
         if (is_numeric($key)) {
             $item = Settings::find($key);
         } else {
@@ -148,11 +155,12 @@ class SettingsManager implements SettingsInterface
         if ($status = $item && $item->delete()) {
             return $getModel ? $item : $status;
         }
+
         return false;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function all(string $group = null, bool $getModel = false)
     {
@@ -169,7 +177,7 @@ class SettingsManager implements SettingsInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function allGrouped(bool $getModel = false)
     {
