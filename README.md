@@ -1,12 +1,8 @@
 # Settings Manager
 
-[![Build Status](https://travis-ci.org/wovosoft/settings-manager.svg?branch=master)](https://travis-ci.org/wovosoft/settings-manager)
-[![styleci](https://styleci.io/repos/CHANGEME/shield)](https://styleci.io/repos/CHANGEME)
-[![Coverage Status](https://coveralls.io/repos/github/wovosoft/settings-manager/badge.svg?branch=master)](https://coveralls.io/github/wovosoft/settings-manager?branch=master)
+
 
 [![Packagist](https://img.shields.io/packagist/v/wovosoft/settings-manager.svg)](https://packagist.org/packages/wovosoft/settings-manager)
-[![Packagist](https://poser.pugx.org/wovosoft/settings-manager/d/total.svg)](https://packagist.org/packages/wovosoft/settings-manager)
-[![Packagist](https://img.shields.io/packagist/l/wovosoft/settings-manager.svg)](https://packagist.org/packages/wovosoft/settings-manager)
 
 Package description: CHANGE ME
 
